@@ -66,11 +66,11 @@ fn dataset_info(DatasetInfoProps { state }: &DatasetInfoProps) -> Html {
 
                         html! {
                             <>
-                            <h3 class={classes!("text-2xl", "font-bold", "mt-0", "mb-8", "dark:text-white")}>{ d.name.clone() }</h3>
+                            <h3 class={classes!("text-2xl", "font-bold", "mt-0", "mb-8", "text-slate-200")}>{ d.name.clone() }</h3>
 
                             <div class={classes!("flex", "space-x-4")}>
-                                <a href={ domain_url } target={ "_blank" } class={classes!("bg-blue-500", "hover:bg-blue-700", "text-white", "py-2", "px-4", "rounded")}>{ d.domain.clone() }</a>
-                                <a href={ dataset_url } target={ "_blank" } class={classes!("bg-blue-500", "hover:bg-blue-700", "text-white", "py-2", "px-4", "rounded")}>{ socrata_button_text }</a>
+                                <a href={ domain_url } target={ "_blank" } class={classes!("bg-slate-300", "hover:bg-slate-400", "py-2", "px-4", "rounded")}>{ d.domain.clone() }</a>
+                                <a href={ dataset_url } target={ "_blank" } class={classes!("bg-slate-300", "hover:bg-slate-400", "py-2", "px-4", "rounded")}>{ socrata_button_text }</a>
                             </div>
                             </>
                         }
@@ -91,13 +91,13 @@ struct RandomQueryButtonProps {
 fn random_query_button(RandomQueryButtonProps { onclick, state }: &RandomQueryButtonProps) -> Html {
     match state {
         SplitgraphEmbedQueryState::None => html! {
-            <button class={classes!("bg-blue-500", "hover:bg-blue-700", "text-white", "font-bold", "py-2", "px-4", "rounded")} {onclick}>{ "I'm feeling lucky!" }</button>
+            <button class={classes!("bg-slate-300", "hover:bg-slate-400", "font-bold", "py-2", "px-4", "rounded")} {onclick}>{ "I'm feeling lucky!" }</button>
         },
         SplitgraphEmbedQueryState::GeneratingQuery => html! {
-            <button class={classes!("bg-blue-500", "hover:bg-blue-700", "text-white", "font-bold", "py-2", "px-4", "rounded", "opacity-50", "cursor-not-allowed")}>{ "Generating..." }</button>
+            <button class={classes!("bg-slate-300", "hover:bg-slate-400", "font-bold", "py-2", "px-4", "rounded", "opacity-50", "cursor-not-allowed")}>{ "Generating..." }</button>
         },
         SplitgraphEmbedQueryState::Query(_, _) => html! {
-            <button class={classes!("bg-blue-500", "hover:bg-blue-700", "text-white", "font-bold", "py-2", "px-4", "rounded")} {onclick}>{ "Another!" }</button>
+            <button class={classes!("bg-slate-300", "hover:bg-slate-400", "font-bold", "py-2", "px-4", "rounded")} {onclick}>{ "Another!" }</button>
         },
     }
 }
@@ -124,15 +124,14 @@ fn app() -> Html {
     // TODO: add a way to generate a nice query name
     // TODO: easier way to copy the URL
     //       (grab more stuff out of the Socrata result, incl. the real original URL)
-    // TODO: maybe only do dark mode?
 
     html! {
         <>
-            <div class={classes!("flex", "flex-col", "min-h-screen", "bg-white", "dark:bg-gray-900")}>
+            <div class={classes!("flex", "flex-col", "min-h-screen", "bg-slate-900")}>
                 <div class={classes!("container", "mx-auto", "max-w-3xl")}>
                     <section class={classes!("text-center", "my-8")}>
-                        <h1 class={classes!("text-5xl", "font-bold", "mt-0", "mb-6", "dark:text-white")}>{ "Socrata Roulette" }</h1>
-                        <h3 class={classes!("text-2xl", "font-bold", "mt-0", "mb-8", "dark:text-white")}>{ "Run a random SQL query on a random open government dataset" }</h3>
+                        <h1 class={classes!("text-5xl", "font-bold", "mt-0", "mb-6", "text-slate-200")}>{ "Socrata Roulette" }</h1>
+                        <h3 class={classes!("text-2xl", "font-bold", "mt-0", "mb-8", "text-slate-200")}>{ "Run a random SQL query on a random open government dataset" }</h3>
                         <RandomQueryButton onclick={onclick} state={ (*query_state).clone() } />
                         <SplitgraphEmbedQuery state={ (*query_state).clone() } />
                     </section>
@@ -140,9 +139,9 @@ fn app() -> Html {
                         <DatasetInfo state={ (*query_state).clone() } />
                     </section>
                 </div>
-                <footer class={classes!("mt-auto", "bg-white", "border-t", "border-gray-200", "shadow", "md:flex", "md:items-center", "md:justify-between", "md:p-6", "dark:bg-gray-800", "dark:border-gray-600")}>
+                <footer class={classes!("mt-auto", "border-t", "shadow", "md:flex", "md:items-center", "md:justify-between", "md:p-6", "bg-slate-800", "border-slate-600")}>
                     <div class={classes!("container", "mx-auto", "max-w-3xl")}>
-                    <span class={classes!("text-sm", "text-gray-500", "sm:text-center", "dark:text-gray-400")}>{"Powered by "}<a class={classes!("text-blue-500", "hover:underline")} href={ "https://www.splitgraph.com/explore" }>{"Splitgraph"}</a>{"."}</span>
+                    <span class={classes!("text-sm", "text-gray-500", "sm:text-center")}>{"Powered by "}<a class={classes!("text-blue-500", "hover:underline")} href={ "https://www.splitgraph.com/explore" }>{"Splitgraph"}</a>{"."}</span>
                     </div>
                 </footer>
             </div>
