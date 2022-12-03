@@ -1,0 +1,239 @@
+{
+  "success": true,
+  "command": "SELECT",
+  "rowCount": 1,
+  "rows": [
+    {
+      "domain": "data.bayareametro.gov",
+      "id": "d8dh-b23b",
+      "name": "Transit-Rich Eligible Transit",
+      "description": "All Transit Rich Eligible Stops",
+      "updated_at": "2021-08-10T19:09:00.000Z",
+      "created_at": "2021-06-24T19:30:29.000Z",
+      "resource": {
+        "name": "Transit-Rich Eligible Transit",
+        "id": "d8dh-b23b",
+        "parent_fxf": [],
+        "description": "All Transit Rich Eligible Stops",
+        "attribution": null,
+        "attribution_link": null,
+        "contact_email": null,
+        "type": "dataset",
+        "updatedAt": "2021-08-10T19:09:00.000Z",
+        "createdAt": "2021-06-24T19:30:29.000Z",
+        "metadata_updated_at": "2021-06-24T19:30:30.000Z",
+        "data_updated_at": "2021-08-10T19:09:00.000Z",
+        "page_views": {
+          "page_views_last_week": 1,
+          "page_views_last_month": 1,
+          "page_views_total": 25,
+          "page_views_last_week_log": 1,
+          "page_views_last_month_log": 1,
+          "page_views_total_log": 4.700439718141093
+        },
+        "columns_name": [
+          "agencyname",
+          "stop_id",
+          "mode",
+          "stop_name",
+          "agency_id",
+          "route_id",
+          "agency_sto",
+          "FID",
+          "the_geom"
+        ],
+        "columns_field_name": [
+          "agencyname",
+          "stop_id",
+          "mode",
+          "stop_name",
+          "agency_id",
+          "route_id",
+          "agency_sto",
+          "fid",
+          "the_geom"
+        ],
+        "columns_datatype": [
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Text",
+          "Number",
+          "Point"
+        ],
+        "columns_description": [
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          "",
+          ""
+        ],
+        "columns_format": [
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {},
+          {}
+        ],
+        "download_count": 11,
+        "provenance": "official",
+        "lens_view_type": "tabular",
+        "lens_display_type": "table",
+        "blob_mime_type": null,
+        "hide_from_data_json": false,
+        "publication_date": "2021-06-24T19:30:30.000Z"
+      },
+      "classification": {
+        "categories": [],
+        "tags": [],
+        "domain_tags": [],
+        "domain_metadata": []
+      },
+      "metadata": {
+        "domain": "data.bayareametro.gov"
+      },
+      "permalink": "https://data.bayareametro.gov/d/d8dh-b23b",
+      "link": "https://data.bayareametro.gov/dataset/Transit-Rich-Eligible-Transit/d8dh-b23b",
+      "owner": {
+        "id": "gmr7-ynpt",
+        "user_type": "interactive",
+        "display_name": "Kearey Smith"
+      }
+    }
+  ],
+  "fields": [
+    {
+      "name": "domain",
+      "tableID": 0,
+      "columnID": 0,
+      "dataTypeID": 25,
+      "dataTypeSize": -1,
+      "dataTypeModifier": -1,
+      "format": "text",
+      "formattedType": "TEXT"
+    },
+    {
+      "name": "id",
+      "tableID": 0,
+      "columnID": 0,
+      "dataTypeID": 25,
+      "dataTypeSize": -1,
+      "dataTypeModifier": -1,
+      "format": "text",
+      "formattedType": "TEXT"
+    },
+    {
+      "name": "name",
+      "tableID": 0,
+      "columnID": 0,
+      "dataTypeID": 25,
+      "dataTypeSize": -1,
+      "dataTypeModifier": -1,
+      "format": "text",
+      "formattedType": "TEXT"
+    },
+    {
+      "name": "description",
+      "tableID": 0,
+      "columnID": 0,
+      "dataTypeID": 25,
+      "dataTypeSize": -1,
+      "dataTypeModifier": -1,
+      "format": "text",
+      "formattedType": "TEXT"
+    },
+    {
+      "name": "updated_at",
+      "tableID": 0,
+      "columnID": 0,
+      "dataTypeID": 1114,
+      "dataTypeSize": 8,
+      "dataTypeModifier": -1,
+      "format": "text",
+      "formattedType": "TIMESTAMP"
+    },
+    {
+      "name": "created_at",
+      "tableID": 0,
+      "columnID": 0,
+      "dataTypeID": 1114,
+      "dataTypeSize": 8,
+      "dataTypeModifier": -1,
+      "format": "text",
+      "formattedType": "TIMESTAMP"
+    },
+    {
+      "name": "resource",
+      "tableID": 0,
+      "columnID": 0,
+      "dataTypeID": 114,
+      "dataTypeSize": -1,
+      "dataTypeModifier": -1,
+      "format": "text",
+      "formattedType": "JSON"
+    },
+    {
+      "name": "classification",
+      "tableID": 0,
+      "columnID": 0,
+      "dataTypeID": 114,
+      "dataTypeSize": -1,
+      "dataTypeModifier": -1,
+      "format": "text",
+      "formattedType": "JSON"
+    },
+    {
+      "name": "metadata",
+      "tableID": 0,
+      "columnID": 0,
+      "dataTypeID": 114,
+      "dataTypeSize": -1,
+      "dataTypeModifier": -1,
+      "format": "text",
+      "formattedType": "JSON"
+    },
+    {
+      "name": "permalink",
+      "tableID": 0,
+      "columnID": 0,
+      "dataTypeID": 25,
+      "dataTypeSize": -1,
+      "dataTypeModifier": -1,
+      "format": "text",
+      "formattedType": "TEXT"
+    },
+    {
+      "name": "link",
+      "tableID": 0,
+      "columnID": 0,
+      "dataTypeID": 25,
+      "dataTypeSize": -1,
+      "dataTypeModifier": -1,
+      "format": "text",
+      "formattedType": "TEXT"
+    },
+    {
+      "name": "owner",
+      "tableID": 0,
+      "columnID": 0,
+      "dataTypeID": 114,
+      "dataTypeSize": -1,
+      "dataTypeModifier": -1,
+      "format": "text",
+      "formattedType": "JSON"
+    }
+  ],
+  "executionTime": "684ms",
+  "executionTimeHighRes": "0s 684.03225ms"
+}

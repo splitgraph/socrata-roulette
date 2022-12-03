@@ -1,0 +1,298 @@
+{
+  "name": "Facility/Service Notification History",
+  "id": "u7r4-acwa",
+  "parent_fxf": [],
+  "description": "This dataset is an extract of the notification system made available to the public here:\n\nhttp://coewebapps.edmonton.ca/facilitynotifications/\n\nThe inquiry tool and this dataset are the means by which certain City of Edmonton Facilities or Services have notifications posted about them. Facilities in this dataset include (but are not limited to) arenas, attractions, boat launches, cross-country ski trails, golf courses, funicular, outdoor ice rinks, outdoor pools, recreation centres, skateparks, and sports fields. Services in this dataset include (but are not limited to) ETS outages, LRT outages, bus service disruptions and delays, LRT bus replacement services and seasonal parking bans. \n\nAny discrepancies between this dataset and what is found at the inquiry tool, the inquiry tool shall be deemed the accurate record. Also, note that Facility Notifications themselves are updated manually and this this information should be considered in that context, and not a a \"real time\" reference.",
+  "attribution": "City of Edmonton",
+  "attribution_link": null,
+  "contact_email": null,
+  "type": "dataset",
+  "updatedAt": "2022-12-03T05:17:37.000Z",
+  "createdAt": "2019-02-04T17:22:07.000Z",
+  "metadata_updated_at": "2022-12-03T05:17:35.000Z",
+  "data_updated_at": "2022-12-03T05:17:37.000Z",
+  "page_views": {
+    "page_views_last_week": 6,
+    "page_views_last_month": 16,
+    "page_views_total": 487,
+    "page_views_last_week_log": 2.807354922057604,
+    "page_views_last_month_log": 4.08746284125034,
+    "page_views_total_log": 8.930737337562887
+  },
+  "columns_name": [
+    "Row ID",
+    "Facility/Service Type",
+    "Facility/Service ID",
+    "Facility/Service Name",
+    "Facility/Service Short Name",
+    "Facility/Service Information",
+    "Address",
+    "edmonton.ca Info Page",
+    "Notification ID",
+    "Notice Publish Start Date",
+    "Notice Publish End Date",
+    "Notice Date Information",
+    "Notification Start Date",
+    "Notification End Date",
+    "Is a Service Notification",
+    "Notice Start Time of Day",
+    "Notice End Time of Day",
+    "Notice Has Holiday Hours",
+    "Additional Information",
+    "Status",
+    "Date Time",
+    "Service",
+    "Reason",
+    "Last Updated",
+    "Latitude",
+    "Longitude",
+    "Location",
+    "Location (address)",
+    "Geometry Point",
+    "Location (city)",
+    "Location (state)",
+    "Location (zip)",
+    "Neighbourhood Boundaries : 2019",
+    "Roadway Maintenance Area Polygon",
+    "Edmonton Public School Board (EPSB) Ward Boundaries (effective at 12:00 AM on Oct 16, 2017)",
+    "Edmonton Catholic School District Ward Boundaries (effective at 12:00 AM on Oct 16, 2017)",
+    "City of Edmonton - Ward Boundaries (effective at 12:00 AM on Oct 16, 2017)",
+    "City of Edmonton : Neighbourhood Boundaries"
+  ],
+  "columns_field_name": [
+    "row_id",
+    "facility_service_type",
+    "facility_service_id",
+    "facility_service_name",
+    "facility_service_short_name",
+    "facility_service_information",
+    "address",
+    "edmonton_ca_info_page",
+    "notification_id",
+    "notice_publish_start_date",
+    "notice_publish_end_date",
+    "notice_date_information",
+    "notification_start_date",
+    "notification_end_date",
+    "is_a_service_notification",
+    "notice_start_time_of_day",
+    "notice_end_time_of_day",
+    "notice_has_holiday_hours",
+    "additional_information",
+    "status",
+    "date_time",
+    "service",
+    "reason",
+    "last_updated",
+    "latitude",
+    "longitude",
+    "location",
+    "location_address",
+    "geometry_point",
+    "location_city",
+    "location_state",
+    "location_zip",
+    ":@computed_region_7ccj_gre3",
+    ":@computed_region_ecxu_fw7u",
+    ":@computed_region_izdr_ja4x",
+    ":@computed_region_5jki_au6x",
+    ":@computed_region_mnf4_kaez",
+    ":@computed_region_eq8d_jmrp"
+  ],
+  "columns_datatype": [
+    "Text",
+    "Text",
+    "Number",
+    "Text",
+    "Text",
+    "Text",
+    "Text",
+    "Url",
+    "Number",
+    "Calendar date",
+    "Calendar date",
+    "Text",
+    "Calendar date",
+    "Calendar date",
+    "Text",
+    "Text",
+    "Text",
+    "Text",
+    "Text",
+    "Text",
+    "Text",
+    "Text",
+    "Text",
+    "Calendar date",
+    "Number",
+    "Number",
+    "Point",
+    "Text",
+    "Point",
+    "Text",
+    "Text",
+    "Text",
+    "Number",
+    "Number",
+    "Number",
+    "Number",
+    "Number",
+    "Number"
+  ],
+  "columns_description": [
+    "A unique value based upon the ID of the Notification.  This unique value eliminate the potential of having duplicate notifications.",
+    "A grouping/categorization of facilities or services.",
+    "A unique value assigned to a facility or to a service.",
+    "The name given to the facility or to the service.",
+    "A shortened name given to the facility or to the service or none is given.",
+    "A specific message (information) related to the status and/or operation for the facility or service.",
+    "The municipal address (or approximate address) for the facility.",
+    "The website URL for further information about the facility or service.",
+    "A unique value assigned to a specific notification for a specific facility or service.",
+    "The date and time at which the notification is to start being published/made public.",
+    "The date and time at which the notification is to stop being published/made public.",
+    "A more readable date range for when the notification is to be published/made public.",
+    "The date and time at which the notification is effective from, for the specified facility/service.",
+    "The date and time at which the notification is effective to, for the specified facility/service.",
+    "A Yes/No value that indicates if the notification is about service at the facility ",
+    "The start time in the day, If the notification is for a period of time within a day.",
+    "The end time in the day, if the notification is for a period of time within a day.",
+    "A Yes/No value that indicates if the notification is about holiday hours (holiday operational hours).",
+    "Any additional information associated with the notification.",
+    "The nature or status of the notification.  Example, Holiday Hours would be the nature of the notification.  For a particular facility, the status may be Open or Closed.",
+    "A more readable time range for when the notification is for a period of time within a day.",
+    "The particular service or service area that is affected by the notification.  Example, All, would refer to the entire Facility.  Or, Skating Pond would refer to only the Skating Pond being affected for that facility.",
+    "The reason given for the notification.  Reasons could range from the actual condition for the facility (a Ski Trail could have Good Conditions as the reason) to the explanation for the notification (a Facility is Closed for Construction reason).",
+    "The last date and time the notification was either added or edited.",
+    "Latitude of the point's centre of the property",
+    "Longitude of the point's centre of the property",
+    "Concatenation of latitude and longitude for mapping purposes",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ],
+  "columns_format": [
+    {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "left"
+    },
+    {
+      "view": "date_ymd_time",
+      "align": "left"
+    },
+    {
+      "view": "date_ymd_time",
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "view": "date_ymd_time",
+      "align": "left"
+    },
+    {
+      "view": "date_ymd_time",
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {
+      "view": "date_ymd_time",
+      "align": "left"
+    },
+    {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "left"
+    },
+    {
+      "precisionStyle": "standard",
+      "noCommas": "true",
+      "align": "left"
+    },
+    {
+      "align": "left"
+    },
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {},
+    {}
+  ],
+  "download_count": 37105,
+  "provenance": "official",
+  "lens_view_type": "tabular",
+  "lens_display_type": "table",
+  "blob_mime_type": null,
+  "hide_from_data_json": false,
+  "publication_date": "2022-02-18T20:32:23.000Z"
+}

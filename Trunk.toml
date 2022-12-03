@@ -1,0 +1,8 @@
+[build]
+target = "index.html"
+dist = "dist"
+
+[[hooks]]
+stage = "build"
+command = "./build_tailwind.sh"
+command_arguments = []
