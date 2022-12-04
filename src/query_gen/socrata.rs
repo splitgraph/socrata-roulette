@@ -49,7 +49,6 @@ pub struct Dataset {
 pub struct RawDatasetResource {
     name: String,
     id: String,
-    description: String,
     columns_name: Vec<String>,
     columns_field_name: Vec<String>,
     columns_datatype: Vec<DataType>,

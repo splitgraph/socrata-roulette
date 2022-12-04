@@ -8,8 +8,6 @@ use serde_derive::{Deserialize, Serialize};
 #[derive(Deserialize)]
 struct DDNResponseRow {
     domain: String,
-    id: String,
-    name: String,
     resource: RawDatasetResource,
 }
 
@@ -53,22 +51,22 @@ query getSocrataRepo($id: String!, $domain: String!, $name: String!) {
 }"#;
 
 #[derive(Deserialize, Clone)]
-pub struct GQLGetSplitgraphRepoDataset {
-    namespace: String,
-    repository: String,
+pub struct SplitgraphInfo {
+    pub namespace: String,
+    pub repository: String,
 }
 
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct GQLGetSplitgraphRepoData {
-    socrata_external_repositories: Vec<GQLGetSplitgraphRepoDataset>,
+    socrata_external_repositories: Vec<SplitgraphInfo>,
 }
 
 pub async fn get_random_dataset() -> Dataset {
     let mut rng = rand::thread_rng();
     let cache_bust: u32 = rng.gen();
 
-    let request = DDNGetDatasetRequest { sql: format!("SELECT * FROM \"splitgraph/socrata\".datasets WHERE {0} = {0} ORDER BY random() DESC LIMIT 1", cache_bust)};
+    let request = DDNGetDatasetRequest { sql: format!("SELECT * FROM \"splitgraph/socrata\".datasets WHERE {cache_bust} = {cache_bust} ORDER BY random() DESC LIMIT 1")};
 
     let result = Request::post("https://data.splitgraph.com/sql/query/ddn")
         .json(&request)
@@ -85,7 +83,7 @@ pub async fn get_random_dataset() -> Dataset {
     parse_dataset(&row.domain, &row.resource)
 }
 
-pub async fn get_dataset_namespace_repository(dataset: &Dataset) -> GQLGetSplitgraphRepoDataset {
+pub async fn get_dataset_namespace_repository(dataset: &Dataset) -> SplitgraphInfo {
     let request = GQLRequest {
         query: SOCRATA_REPO_QUERY.to_string(),
         variables: GQLGetSplitgraphRepoVariables {
@@ -117,16 +115,17 @@ pub async fn get_dataset_namespace_repository(dataset: &Dataset) -> GQLGetSplitg
 }
 
 pub struct SplitgraphDDNSyntax {
-    repository: GQLGetSplitgraphRepoDataset,
+    repository: SplitgraphInfo,
 }
 
 pub fn slugify_table(table: &str) -> String {
+    /// Copy of Splitgraph Socrata loader's table slugifier
     const MAX_LENGTH: usize = 50;
 
     let re = Regex::new(r"[^\sa-zA-Z0-9]").unwrap();
     let table_lower = table.to_lowercase();
     let replaced = re.replace_all(&table_lower, "");
-    let parts: Vec<&str> = replaced.trim().split_whitespace().collect();
+    let parts: Vec<&str> = replaced.split_whitespace().collect();
 
     let mut result: String = parts.first().unwrap().to_string();
 
@@ -135,7 +134,7 @@ pub fn slugify_table(table: &str) -> String {
             break;
         };
 
-        result.push_str("_");
+        result.push('_');
         result.push_str(p)
     }
 
@@ -146,19 +145,20 @@ impl Syntax for SplitgraphDDNSyntax {
     fn get_dataset_sql(self: &SplitgraphDDNSyntax, dataset: &Dataset) -> String {
         format!(
             "\"{:}/{:}\".\"{:}\"",
-            self.repository.namespace.replace("\"", "\"\""),
-            self.repository.repository.replace("\"", "\"\""),
-            slugify_table(&dataset.name).replace("\"", "\"\"")
+            self.repository.namespace.replace('\"', "\"\""),
+            self.repository.repository.replace('\"', "\"\""),
+            slugify_table(&dataset.name).replace('\"', "\"\"")
         )
     }
 
     fn get_column_sql(self: &SplitgraphDDNSyntax, column: &Column) -> String {
         // TODO: fetch real Splitgraph columns and map them
-        format!("\"{:}\"", column.pg_name.replace("\"", "\"\""))
+        format!("\"{:}\"", column.pg_name.replace('\"', "\"\""))
     }
 }
 
-pub async fn get_random_query_on_random_data() -> (Query<SplitgraphDDNSyntax>, Dataset) {
+pub async fn get_random_query_on_random_data(
+) -> (Query<SplitgraphDDNSyntax>, Dataset, SplitgraphInfo) {
     let dataset = get_random_dataset().await;
 
     let namespace_repository = get_dataset_namespace_repository(&dataset).await;
@@ -170,18 +170,15 @@ pub async fn get_random_query_on_random_data() -> (Query<SplitgraphDDNSyntax>, D
         &dataset,
         &measures,
         &dimensions,
-        1,
-        2,
-        1,
-        3,
-        0,
-        2,
+        1..3,
+        1..4,
+        0..3,
         SplitgraphDDNSyntax {
-            repository: namespace_repository,
+            repository: namespace_repository.clone(),
         },
     );
 
-    (query, dataset)
+    (query, dataset, namespace_repository)
 }
 
 #[cfg(test)]

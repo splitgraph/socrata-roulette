@@ -2,6 +2,7 @@ use crate::query_gen::socrata::{Column, DataType, Dataset};
 use itertools::Itertools;
 use rand::seq::SliceRandom;
 use rand::Rng;
+use std::ops::Range;
 
 #[derive(Debug, PartialEq, Eq, Clone)]
 pub enum MeasureType {
@@ -56,25 +57,25 @@ pub struct Query<T: Syntax> {
 
 pub trait Syntax {
     /// Get an SQL identifier for a dataset
-    fn get_dataset_sql(self: &Self, dataset: &Dataset) -> String;
+    fn get_dataset_sql(&self, dataset: &Dataset) -> String;
     /// Get an SQL identifier for a column
-    fn get_column_sql(self: &Self, column: &Column) -> String;
+    fn get_column_sql(&self, column: &Column) -> String;
 }
 
 pub struct DefaultSyntax {}
 
 impl Syntax for DefaultSyntax {
-    fn get_dataset_sql(self: &Self, dataset: &Dataset) -> String {
+    fn get_dataset_sql(&self, dataset: &Dataset) -> String {
         dataset.socrata_id.clone()
     }
 
-    fn get_column_sql(self: &Self, column: &Column) -> String {
+    fn get_column_sql(&self, column: &Column) -> String {
         column.pg_name.clone()
     }
 }
 
 impl<T: Syntax> Query<T> {
-    fn emit_measure(self: &Self, measure: &Measure, include_alias: bool) -> String {
+    fn emit_measure(&self, measure: &Measure, include_alias: bool) -> String {
         let func = match measure.type_ {
             MeasureType::Count => "COUNT",
             MeasureType::Sum => "SUM",
@@ -91,7 +92,7 @@ impl<T: Syntax> Query<T> {
         // TODO: use the same self.syntax route for unquoted columns
         let column_unquoted = &measure.column.as_ref().unwrap().pg_name;
 
-        let mut result = format!("{0}({1})", func, column_sql);
+        let mut result = format!("{func}({column_sql})");
 
         if include_alias {
             result.push_str(format!(" AS {0}_{1}", func.to_lowercase(), column_unquoted).as_str());
@@ -100,17 +101,17 @@ impl<T: Syntax> Query<T> {
         result
     }
 
-    fn emit_dimension(self: &Self, dimension: &Dimension) -> String {
+    fn emit_dimension(&self, dimension: &Dimension) -> String {
         self.syntax.get_column_sql(&dimension.column)
     }
 
-    fn emit_order_by(self: &Self, order_by: &OrderBy) -> String {
+    fn emit_order_by(&self, order_by: &OrderBy) -> String {
         let mut result = String::new();
 
         result.push_str(
             match &order_by.item {
-                OrderByItem::Measure(m) => self.emit_measure(&m, false),
-                OrderByItem::Dimension(d) => self.emit_dimension(&d),
+                OrderByItem::Measure(m) => self.emit_measure(m, false),
+                OrderByItem::Dimension(d) => self.emit_dimension(d),
             }
             .as_str(),
         );
@@ -123,7 +124,7 @@ impl<T: Syntax> Query<T> {
         result
     }
 
-    pub fn to_sql(self: &Self) -> String {
+    pub fn to_sql(&self) -> String {
         let mut result = String::new();
 
         result.push_str("SELECT\n  ");
@@ -258,21 +259,16 @@ pub fn random_query<T: Syntax>(
     dataset: &Dataset,
     measures: &Vec<Measure>,
     dimensions: &Vec<Dimension>,
-    min_dimensions: usize,
-    max_dimensions: usize,
-    min_measures: usize,
-    max_measures: usize,
-    min_order_by: usize,
-    max_order_by: usize,
+    no_dimensions: Range<usize>,
+    no_measures: Range<usize>,
+    no_order_bys: Range<usize>,
     syntax: T,
 ) -> Query<T> {
     let mut rng = rand::thread_rng();
 
-    let no_dimensions = rng.gen_range(min_dimensions..max_dimensions + 1);
-    let no_measures = rng.gen_range(min_measures..max_measures + 1);
-    let no_order_bys = rng
-        .gen_range(min_order_by..max_order_by + 1)
-        .min(no_dimensions + no_measures);
+    let no_dimensions = rng.gen_range(no_dimensions);
+    let no_measures = rng.gen_range(no_measures);
+    let no_order_bys = rng.gen_range(no_order_bys).min(no_dimensions + no_measures);
 
     let chosen_measures: Vec<Measure> = measures
         .choose_multiple(&mut rng, no_measures)
@@ -849,12 +845,9 @@ LIMIT 100"#
                 &dataset,
                 &measures,
                 &dimensions,
-                1,
-                2,
-                1,
-                3,
-                0,
-                2,
+                1..3,
+                1..4,
+                0..3,
                 DefaultSyntax {},
             );
             let _ = query.to_sql();
