@@ -30,7 +30,7 @@ fn main_app() -> Html {
 
                 let query_state = QueryState::from_query_dataset(&query, &dataset, &splitgraph);
                 let params: HashMap<&str, &str> = HashMap::new();
-                let route = AnyRoute::from_path("/", &params).unwrap();
+                let route = AnyRoute::from_path("", &params).unwrap();
                 navigator.push_with_query(&route, &query_state).unwrap();
 
                 query_gen_state.set(QueryGenerationState::Ready)
