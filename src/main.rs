@@ -118,7 +118,6 @@ fn app() -> Html {
         })
     };
 
-    // TODO: fix mobile
     // TODO: some error handling
     // TODO: factor some styles out
     // TODO: add a way to generate a nice query name
@@ -128,7 +127,7 @@ fn app() -> Html {
     html! {
         <>
             <div class={classes!("flex", "flex-col", "min-h-screen", "bg-slate-900")}>
-                <div class={classes!("container", "mx-auto", "max-w-3xl")}>
+                <div class={classes!("container", "mx-auto", "max-w-3xl", "p-2")}>
                     <section class={classes!("text-center", "my-8")}>
                         <h1 class={classes!("text-5xl", "font-bold", "mt-0", "mb-6", "text-slate-200")}>{ "Socrata Roulette" }</h1>
                         <h3 class={classes!("text-2xl", "font-bold", "mt-0", "mb-8", "text-slate-200")}>{ "Run a random SQL query on a random open government dataset" }</h3>
@@ -139,7 +138,7 @@ fn app() -> Html {
                         <DatasetInfo state={ (*query_state).clone() } />
                     </section>
                 </div>
-                <footer class={classes!("mt-auto", "border-t", "shadow", "md:flex", "md:items-center", "md:justify-between", "md:p-6", "bg-slate-800", "border-slate-600")}>
+                <footer class={classes!("mt-auto", "border-t", "shadow", "md:flex", "md:items-center", "md:justify-between", "p-2", "md:p-6", "bg-slate-800", "border-slate-600")}>
                     <div class={classes!("container", "mx-auto", "max-w-3xl")}>
                     <span class={classes!("text-sm", "text-gray-500", "sm:text-center")}>{"Powered by "}<a class={classes!("text-blue-500", "hover:underline")} href={ "https://www.splitgraph.com/explore" }>{"Splitgraph"}</a>{"."}</span>
                     </div>
