@@ -45,7 +45,7 @@ Try a different one! It'll probably work better.
 
 ### This doesn't work in an incognito Chrome instance
 
-This is because the Splitgraph query embed is third-party (hosted on a different domain than `splitgraph.github.io`) and tries to use the browser's local storage to store the query text. Try a 
+This is because the Splitgraph query embed is third-party (hosted on a different domain than `splitgraph.github.io`) and tries to use the browser's local storage to store the query text. Try a non-incognito mode for now, or a different browser like Firefox.
 
 ### I get a Splitgraph sign-in screen instead?
 
