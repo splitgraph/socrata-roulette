@@ -27,6 +27,10 @@ and render a Splitgraph query embed with that query prefilled. Splitgraph transl
 
 ## FAQ
 
+### I don't see anything?
+
+This uses Yew and works as a client-side WebAssembly app, so is not supported by some browsers like IE 11.
+
 ### Sometimes the query times out
 
 Aggregation queries can be rather heavyweight, since they require scanning through the whole dataset. Sometimes Splitgraph can't ship the whole query to the data source, so it has to load the whole dataset from the upstream and run the query locally.
