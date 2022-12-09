@@ -6,7 +6,9 @@ See it in action on https://splitgraph.github.io/socrata-roulette.
 
 ## How does it work?
 
-We first pick a random Socrata dataset. Then we go through its columns and classify them as:
+We first pick a random Socrata dataset (by sending a query to Splitgraph like `SELECT * FROM "splitgraph/socrata".datasets ORDER BY random() LIMIT 1`).
+
+Then we go through its columns and classify them as:
 
 - Measures (something that can be counted/calculated, like an `AVG(integer_column)`, `SUM(some_price_column)` etc)
 - Dimensions (something that can be aggregated on, like a timestamp, an ID or a text column)
@@ -19,7 +21,7 @@ SELECT
   (selected measures)
 FROM (source table)
 GROUP BY (selected dimensions)
-ORDER BY (some subset of measured and dimensions)
+ORDER BY (some subset of measures and dimensions)
 LIMIT 100
 ```
 
