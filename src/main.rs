@@ -55,7 +55,9 @@ fn main_app() -> Html {
             </div>
             <footer class={classes!("mt-auto", "border-t", "shadow", "md:flex", "md:items-center", "md:justify-between", "p-2", "md:p-6", "bg-slate-800", "border-slate-600")}>
                 <div class={classes!("container", "mx-auto", "max-w-3xl")}>
-                <span class={classes!("text-sm", "text-gray-500", "sm:text-center")}>{"Powered by "}<a class={classes!("text-blue-500", "hover:underline")} href={ "https://www.splitgraph.com/explore" }>{"Splitgraph"}</a>{"."}</span>
+                <span class={classes!("text-sm", "text-gray-500", "sm:text-center")}>{"Powered by "}<a class={classes!("text-blue-500", "hover:underline")} href={ "https://www.splitgraph.com/explore" }>{"Splitgraph"}</a></span>
+                {" | "}<span class={classes!("text-sm", "text-gray-500", "sm:text-center")}>{"Source on "}<a class={classes!("text-blue-500", "hover:underline")} href={ "https://github.com/splitgraph/socrata-roulette/" }>{"GitHub"}</a></span>
+                {" | "}<span class={classes!("text-sm", "text-gray-500", "sm:text-center")}><a class={classes!("text-blue-500", "hover:underline")} href={ "https://github.com/splitgraph/socrata-roulette/blob/main/README.md#faq" }>{"FAQ"}</a></span>
                 </div>
             </footer>
         </div>
